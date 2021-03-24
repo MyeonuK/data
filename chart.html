@@ -9,9 +9,14 @@
   </head>
 
   <body>
-    <input type="file" id="excelFile" onchange="excelExport(event)" />
+    <input
+      type="file"
+      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      id="excelFile"
+      onchange="excelExport(event)"
+    />
     <button class="btn" onclick="openChart()"></button>
 
-    <div id="curve_chart" style="width: 1000px; height: 800px"></div>
+    <div id="curve_chart" style="width: 1800px; height: 800px"></div>
   </body>
 </html>

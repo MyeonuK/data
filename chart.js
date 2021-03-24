@@ -3,7 +3,7 @@ let dataArr = [];
 function excelExport(event) {
   var input = event.target;
   var reader = new FileReader();
-  let tempArr = [];
+  let objArr = [];
 
   reader.onload = function () {
     var fileData = reader.result;
@@ -11,16 +11,17 @@ function excelExport(event) {
 
     wb.SheetNames.forEach(function (sheetName) {
       let rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
-      tempArr.push(rowObj);
+      objArr.push(rowObj);
     });
 
-    let length = tempArr[0].length;
+    let length = objArr[0].length;
     dataArr.push(["Freq", "Reference", "Micaplate"]);
+    console.log(objArr[0][0].key);
     for (let i = 0; i < length; i++) {
       let ttt = [
-        tempArr[0][i]["Freq."],
-        tempArr[0][i]["Reference"],
-        tempArr[0][i]["Micaplate"],
+        objArr[0][i]["Freq."],
+        objArr[0][i]["Reference"],
+        objArr[0][i]["Micaplate"],
       ];
       dataArr.push(ttt);
     }
@@ -32,9 +33,6 @@ function excelExport(event) {
 }
 
 function drawChart() {
-  console.log("drawChart");
-  console.log(dataArr);
-
   var data = google.visualization.arrayToDataTable(dataArr);
   /*
   let arr = [
@@ -49,7 +47,7 @@ function drawChart() {
   */
 
   var options = {
-    title: "어떡하라는거야",
+    title: "차트",
     curveType: "function",
     legend: { position: "bottom" },
   };
