@@ -31,30 +31,3 @@ function excelExport(event) {
   };
   reader.readAsBinaryString(input.files[0]);
 }
-
-function drawChart() {
-  var data = google.visualization.arrayToDataTable(dataArr);
-  /*
-  let arr = [
-    ["Year", "Sales"],
-    [2004, 0],
-    [2005, 1170],
-    [2006, 660],
-    [2007, 1030],
-  ];
-  console.log(arr);
-  var data = google.visualization.arrayToDataTable(arr);
-  */
-
-  var options = {
-    title: "차트",
-    curveType: "function",
-    legend: { position: "bottom" },
-  };
-
-  var chart = new google.visualization.LineChart(
-    document.getElementById("curve_chart")
-  );
-
-  chart.draw(data, options);
-}
