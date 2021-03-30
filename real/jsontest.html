@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style src="jsontest.css"></style>
+    <title>DataView</title>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script src="jsontest.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>DataView</h1>
+    </header>
+
+    <section class="select_section">
+      <select name="material" id="material_select">
+        <optgroup label="Material">
+          <option value="Micaplate">Micaplate</option>
+          <option value="Press board">Press board</option>
+          <option value="Polymer">Polymer</option>
+          <option value="Xlpe">Xlpe</option>
+          <option value="Teflon">Teflon</option>
+          <option value="Normax">Normax</option>
+          <option value="Kraft">Kraft</option>
+          <option value="Pvc">Pvc</option>
+          <option value="Micaphaper">Micaphaper</option>
+          <option value="Plastic">Plastic</option>
+        </optgroup>
+      </select>
+    </section>
+
+    <section class="result_section">
+      <div class="description"></div>
+
+      <div class="charts">
+        <div class="chart" id="Time_Trace_chart">timetrace chart</div>
+        <div class="chart" id="Frequency_trace_chart">frequencytrace chart</div>
+        <div class="chart" id="Transmittance_chart">transmittance chart</div>
+        <div class="chart" id="N1_chart">n1 chart</div>
+        <div class="chart" id="N2_chart">n2 chart</div>
+        <div class="chart" id="E1_chart">e1 chart</div>
+        <div class="chart" id="E2_chart">e2 chart</div>
+        <div class="chart" id="C1_chart">c1 chart</div>
+        <div class="chart" id="C2_chart">c2 chart</div>
+      </div>
+    </section>
+
+    <div id="curve_chart" style="width: 500px; height: 500px"></div>
+    <div id="curve_chart1" style="width: 500px; height: 500px"></div>
+  </body>
+</html>

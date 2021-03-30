@@ -1,0 +1,12 @@
+:root {
+  /* color */
+
+  /* layout size */
+}
+
+.result_section .charts {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
