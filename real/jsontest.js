@@ -1,19 +1,3 @@
-// drawChart
-function drawChart(id, data) {
-  function getData(data) {}
-
-  var chartData = google.visualization.arrayToDataTable(data);
-
-  var options = {
-    title: "차트",
-    curveType: "function",
-    legend: { position: "bottom" },
-  };
-
-  var chart = new google.visualization.LineChart(document.getElementById(id));
-
-  chart.draw(chartData, options);
-}
 /*
 function readXLSX(fileName) {
   fetch(fileName)
@@ -31,8 +15,10 @@ function readXLSX(fileName) {
 
 function readXLSX(fileName) {
   let data = {
+    /*
     arr: [],
     len: 0,
+    */
   };
 
   fetch(fileName)
@@ -45,69 +31,146 @@ function readXLSX(fileName) {
         type: "array",
       });
 
-      let tempArr = [];
-      for (let i in workbook.Sheets.Sheet1) {
-        tempArr.push(workbook.Sheets.Sheet1[String(i)].w);
-      }
-      tempArr.shift();
+      for (let sheetName in workbook.Sheets) {
+        data[sheetName] = {};
+        data[sheetName]["len"] = 0;
 
-      for (let i = 0; i < tempArr.length; i++) {
-        let c = String(tempArr[i])[0];
-        if ("A" <= c && c <= "Z") {
-          data["len"] += 1;
-        } else {
-          break;
+        let tempArr = [];
+        for (let cell in workbook.Sheets[sheetName]) {
+          tempArr.push(workbook.Sheets[sheetName][cell].w);
         }
-      }
+        tempArr.shift();
 
-      parseData(tempArr, data);
-
-      function parseData(dataArr, data) {
-        let length = dataArr.length;
-        let contentsNum = data.len;
-        let dataStack = [];
-
-        for (let i = 0; i < contentsNum; i++) {
-          dataStack.push(dataArr[i]);
-        }
-        data["arr"].push(dataStack);
-        dataStack = [];
-
-        for (let i = contentsNum; i < length; i++) {
-          dataStack.push(Number(dataArr[i]));
-
-          if (i % contentsNum == contentsNum - 1) {
-            data["arr"].push(dataStack);
-            dataStack = [];
+        // count number of column -> data[sheetName]["len"]
+        let len = tempArr.length;
+        for (let l = 0; l < len; l++) {
+          let c = tempArr[l][0];
+          if ("A" <= c && c <= "Z") {
+            data[sheetName]["len"] += 1;
+          } else {
+            break;
           }
         }
+
+        function parseData(sheet, dataArr, object) {
+          let contentsNum = object[sheet]["len"];
+          let length = dataArr.length;
+          let dataStack = [];
+          object[sheet]["arr"] = [];
+          object[sheet]["arr"].push(dataArr.splice(0, contentsNum));
+
+          for (let i = contentsNum; i < length; i++) {
+            dataStack.push(Number(dataArr[i]));
+
+            if (i % contentsNum == contentsNum - 1) {
+              object[sheet]["arr"].push(dataStack);
+              dataStack = [];
+            }
+          }
+
+          /*
+          while (dataArr.length > 0) {
+            object[sheet]["arr"].push(dataArr.splice(0, contentsNum));
+          }
+        */
+
+          /*
+          
+          for (let i = 0; i < contentsNum; i++) {
+            dataStack.push(dataArr[i]);
+            console.log(dataArr[i]);
+          }
+          console.log(dataStack);
+          object[sheet]["arr"].push(dataStack);
+          dataStack = [];
+
+          for (let i = contentsNum; i < length; i++) {
+            dataStack.push(dataArr[i]);
+
+            if (i % contentsNum == contentsNum - 1) {
+              object[sheet]["arr"].push(dataStack);
+              dataStack = [];
+            }
+          }
+          */
+        }
+
+        parseData(sheetName, tempArr, data);
       }
     });
+
+  console.log(data);
 
   return data;
 }
 
-function makeChart(idName, material) {
-  function setData(material) {
-    /*
-    if (dataObject.arr.includes(material)) {
-      console.log("yes");
-    } else {
-      console.log("noooo");
-    }
-    */
-    //let newData = [];
-    //for ()
+function handleOnChange(e) {
+  const material = e.value;
+  if (material != "Init") {
+    makeChartSet(material);
   }
-  setData();
-
-  google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(function () {
-    drawChart(idName, dataObject.arr);
-  });
 }
 
-let dataObject = readXLSX("tt.xlsx");
-console.log(Array.isArray(dataObject.arr));
-makeChart("curve_chart", "Hello");
-makeChart("curve_chart1", 0);
+function makeChartSet(material) {
+  let titlesArr = Object.keys(dataObject);
+  let sortedData = [];
+
+  for (let t in titlesArr) {
+    let title = titlesArr[t];
+    let length = dataObject[title]["arr"].length;
+    let materialIndex = dataObject[title]["arr"][0].indexOf(material);
+    let tempArr = [];
+    sortedData = [];
+    console.log(title);
+
+    switch (title) {
+      case "Time_Trace":
+      case "Transmittance":
+        for (let i = 0; i < length; i++) {
+          tempArr = [];
+          tempArr.push(dataObject[title]["arr"][i][0]);
+          tempArr.push(dataObject[title]["arr"][i][1]);
+          tempArr.push(dataObject[title]["arr"][i][materialIndex]);
+          sortedData.push(tempArr);
+        }
+        break;
+      default:
+        for (let i = 0; i < length; i++) {
+          tempArr = [];
+          tempArr.push(dataObject[title]["arr"][i][0]);
+          tempArr.push(dataObject[title]["arr"][i][materialIndex]);
+          sortedData.push(tempArr);
+        }
+        break;
+    }
+    console.log(typeof title);
+    console.log(title);
+    console.log(sortedData);
+
+    makeChart(title, sortedData);
+  }
+}
+function makeChart(id, data) {
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(function () {
+    drawChart(id, data);
+  });
+}
+// drawChart
+function drawChart(id, data) {
+  var chartData = google.visualization.arrayToDataTable(data);
+
+  var options = {
+    title: id,
+    hAxis: { minValue: 0, maxValue: 3 },
+    curveType: "function",
+    legend: { position: "bottom" },
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById(id));
+
+  chart.draw(chartData, options);
+}
+
+//let dataObject = readXLSX("tt.xlsx");
+let dataObject = readXLSX("chart.xlsx");
