@@ -1,6 +1,0 @@
-{
-  "scripts": {"start" : "jsontest.html"},
-  "dependencies": {
-    "xlsx": "^0.16.9"
-  }
-}
