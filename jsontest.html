@@ -15,58 +15,58 @@
       <h1>실험결과</h1>
     </header>
 
-    <section class="select_section">
-      <label for="material">Choose material</label>
-      <select
-        name="material"
-        id="material_select"
-        onchange="handleOnChange(this)"
-      >
-        <option value="Init">Choose material</option>
-        <option value="Mica plate">Mica plate</option>
-        <option value="Pressboard">Pressboard</option>
-        <option value="Polymer">Polymer</option>
-        <option value="XLPE">XLPE</option>
-        <option value="Teflon">Teflon</option>
-        <option value="Nomax">Nomax</option>
-        <option value="Kraft paper">Kraft paper</option>
-        <option value="PVC">PVC</option>
-        <option value="Mica paper">Mica paper</option>
-        <option value="Plastic">Plastic</option>
-      </select>
-    </section>
+    <section class="content_section">
+      <nav class="material">
+        <div class="title"><b>Choose material</b></div>
+        <ul class="material_list" id="material_list">
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial();"> XLPE </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial();">
+              hellowww
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial();">
+              hellowww
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-    <section class="result_section">
-      <div class="description" id="description">
-        <p>description</p>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div id="Time_Trace"></div>
+      <div class="content">
+        <div class="description" id="description">
+          <p>description</p>
         </div>
-        <div class="chart">
-          <div id="Frequency_Trace"></div>
-        </div>
-        <div class="chart">
-          <div id="Transmittance"></div>
-        </div>
-        <div class="chart">
-          <div id="Real_Refractive"></div>
-        </div>
-        <div class="chart">
-          <div id="Imaginary_Refractive"></div>
-        </div>
-        <div class="chart">
-          <div id="Real_Permittivity"></div>
-        </div>
-        <div class="chart">
-          <div id="Imaginary_Permittivity"></div>
-        </div>
-        <div class="chart">
-          <div id="Real_Conductivity"></div>
-        </div>
-        <div class="chart">
-          <div id="Imaginary_Conductivity"></div>
+        <div class="charts">
+          <div class="chart">
+            <div id="Time_Trace"></div>
+          </div>
+          <div class="chart">
+            <div id="Frequency_Trace"></div>
+          </div>
+          <div class="chart">
+            <div id="Transmittance"></div>
+          </div>
+          <div class="chart">
+            <div id="Real_Refractive"></div>
+          </div>
+          <div class="chart">
+            <div id="Imaginary_Refractive"></div>
+          </div>
+          <div class="chart">
+            <div id="Real_Permittivity"></div>
+          </div>
+          <div class="chart">
+            <div id="Imaginary_Permittivity"></div>
+          </div>
+          <div class="chart">
+            <div id="Real_Conductivity"></div>
+          </div>
+          <div class="chart">
+            <div id="Imaginary_Conductivity"></div>
+          </div>
         </div>
       </div>
     </section>

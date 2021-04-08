@@ -2,6 +2,11 @@
   /* color */
   --color-white: #ffffff;
   /* layout size */
+  --padding-large: 40px;
+  --padding-small: 5px;
+  /* fonr size */
+  --font-medium: 20px;
+  --content-font-size: 20px;
 }
 
 * {
@@ -14,68 +19,76 @@
 }
 
 body {
+  margin: var(--padding-large) var(--padding-large);
+  margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 3px solid red;
 }
 
 header {
-  padding: 25px;
+  width: 100%;
+  height: 100px;
+  padding: 20px 20px;
+  border: 3px solid red;
+}
+
+.description {
+  height: 250px;
+  border: 3px solid green;
 }
 
 header h1 {
   font-size: 40px;
-}
-
-.contents {
-  display: flex;
-  flex-direction: row;
-}
-
-.result_section {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.result_section .description {
-  width: 80%;
-  height: auto;
-}
-
-.result_section .description p {
-  color: red;
   text-align: center;
 }
 
-.result_section .charts {
+.content_section {
   width: 100%;
+  height: calc(100% - 100px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 3px solid red;
+}
+
+.content_section .material {
+  width: 300px;
+  height: 100%;
+  padding: var(--padding-large);
+  border: 3px solid blue;
+}
+
+.content_section .material > * {
+  padding: calc(var(--padding-small) * 2) 0;
+  font-size: var(--font-medium);
+}
+
+.material .material_list li {
+  padding: var(--padding-small) 0;
+}
+
+.content_section .content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content_section .content .charts {
+  width: 100%;
+  height: calc(100% - 250px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.result_section .charts .chart {
+.content .charts .chart {
   width: 33%;
   height: auto;
 }
 
-.charts .chart div {
-  height: 300px;
-}
-
-@media (max-width: 1200px) {
-  .result_section .charts .chart {
-    width: 50%;
-    height: auto;
-  }
-}
-
-@media (max-width: 600px) {
-  .result_section .charts .chart {
-    width: 100%;
-    height: auto;
-  }
+.charts .chart > div {
+  height: 250px;
 }
