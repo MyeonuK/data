@@ -1,25 +1,5 @@
-/*
 function readXLSX(fileName) {
-  fetch(fileName)
-    .then((res) => {
-      return res.arrayBuffer();
-    })
-    .then((res) => {
-      console.log("file:", res);
-      var workbook = XLSX.read(res, {
-        type: "binary",
-      });
-    });
-}
-*/
-
-function readXLSX(fileName) {
-  let data = {
-    /*
-    arr: [],
-    len: 0,
-    */
-  };
+  let data = {};
 
   fetch(fileName)
     .then((res) => {
@@ -67,43 +47,25 @@ function readXLSX(fileName) {
               dataStack = [];
             }
           }
-
-          /*
-          while (dataArr.length > 0) {
-            object[sheet]["arr"].push(dataArr.splice(0, contentsNum));
-          }
-        */
-
-          /*
-          
-          for (let i = 0; i < contentsNum; i++) {
-            dataStack.push(dataArr[i]);
-            console.log(dataArr[i]);
-          }
-          console.log(dataStack);
-          object[sheet]["arr"].push(dataStack);
-          dataStack = [];
-
-          for (let i = contentsNum; i < length; i++) {
-            dataStack.push(dataArr[i]);
-
-            if (i % contentsNum == contentsNum - 1) {
-              object[sheet]["arr"].push(dataStack);
-              dataStack = [];
-            }
-          }
-          */
         }
 
         parseData(sheetName, tempArr, data);
       }
     });
 
-  console.log(data);
+  function creatNavItem(d) {
+    let nav = document.getElementById("material_list");
+    let newItem = document.createElement("li");
 
+    //for ()
+    newItem.innerItem;
+  }
+
+  //console.log(data);
+  //console.log(Object.keys(data));
   return data;
 }
-
+/*
 function handleOnChange(e) {
   const material = e.value;
   if (material != "Init") {
@@ -111,9 +73,14 @@ function handleOnChange(e) {
     changeDescription(material);
   }
 }
+*/
+function chooseMaterial() {
+  makeChartSet("XLPE");
+}
 
 function makeChartSet(material) {
   let titlesArr = Object.keys(dataObject);
+  console.log(titlesArr);
   let sortedData = [];
 
   for (let t in titlesArr) {
@@ -197,4 +164,7 @@ function changeDescription(material) {
 }
 
 let dataObject = readXLSX("cchartt.xlsx");
-//let dataObject = readXLSX("chart.xlsx");
+//console.log(Object.keys(dataObject));
+
+makeChartSet("XLPE");
+//changeDescription("Nomax");
