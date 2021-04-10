@@ -12,7 +12,9 @@
 
   <body>
     <header>
-      <h1>실험결과</h1>
+      <a href="javascript:void(0)" onclick="mainScreen()" class="title">
+        THz database
+      </a>
     </header>
 
     <section class="content_section">
@@ -20,52 +22,97 @@
         <div class="title"><b>Choose material</b></div>
         <ul class="material_list" id="material_list">
           <li>
-            <a href="javascript:void(0);" onclick="chooseMaterial();"> XLPE </a>
+            <a
+              href="javascript:void(0);"
+              onclick="chooseMaterial('Mica plate');"
+              >Mica plate</a
+            >
           </li>
           <li>
-            <a href="javascript:void(0);" onclick="chooseMaterial();">
-              hellowww
-            </a>
+            <a
+              href="javascript:void(0);"
+              onclick="chooseMaterial('Pressboard');"
+              >Pressboard</a
+            >
           </li>
           <li>
-            <a href="javascript:void(0);" onclick="chooseMaterial();">
-              hellowww
-            </a>
+            <a href="javascript:void(0);" onclick="chooseMaterial('Polymer');"
+              >Polymer</a
+            >
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial('XLPE');"
+              >XLPE</a
+            >
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial('Teflon');"
+              >Teflon</a
+            >
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial('Nomax');"
+              >Nomax</a
+            >
+          </li>
+          <li>
+            <a
+              href="javascript:void(0);"
+              onclick="chooseMaterial('Kraft paper');"
+              >Kraft paper</a
+            >
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial('PVC');"
+              >PVC</a
+            >
+          </li>
+          <li>
+            <a
+              href="javascript:void(0);"
+              onclick="chooseMaterial('Mica paper');"
+              >Mica paper</a
+            >
+          </li>
+          <li>
+            <a href="javascript:void(0);" onclick="chooseMaterial('Plastic');"
+              >Plastic</a
+            >
           </li>
         </ul>
       </nav>
 
-      <div class="content">
-        <div class="description" id="description">
-          <p>description</p>
-        </div>
-        <div class="charts">
-          <div class="chart">
-            <div id="Time_Trace"></div>
+      <div class="content" id="content">
+        <h1 id="title">Hello</h1>
+        <div class="detail" id="detail">
+          <div class="description" id="description">
+            <p>description</p>
           </div>
-          <div class="chart">
-            <div id="Frequency_Trace"></div>
-          </div>
-          <div class="chart">
-            <div id="Transmittance"></div>
-          </div>
-          <div class="chart">
-            <div id="Real_Refractive"></div>
-          </div>
-          <div class="chart">
-            <div id="Imaginary_Refractive"></div>
-          </div>
-          <div class="chart">
-            <div id="Real_Permittivity"></div>
-          </div>
-          <div class="chart">
-            <div id="Imaginary_Permittivity"></div>
-          </div>
-          <div class="chart">
-            <div id="Real_Conductivity"></div>
-          </div>
-          <div class="chart">
-            <div id="Imaginary_Conductivity"></div>
+          <div class="charts">
+            <div class="chart">
+              <div id="Frequency_Trace"></div>
+            </div>
+            <div class="chart">
+              <div id="Transmittance"></div>
+            </div>
+            <div class="chart">
+              <div id="Real_Refractive"></div>
+            </div>
+            <div class="chart">
+              <div id="Imaginary_Refractive"></div>
+            </div>
+            <div class="chart">
+              <div id="Real_Permittivity"></div>
+            </div>
+            <div class="chart">
+              <div id="Imaginary_Permittivity"></div>
+            </div>
+            <div class="chart">
+              <div id="Real_Conductivity"></div>
+            </div>
+            <div class="chart">
+              <div id="Imaginary_Conductivity"></div>
+            </div>
           </div>
         </div>
       </div>
