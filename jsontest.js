@@ -110,8 +110,8 @@ function changeDescription(material) {
   descriptionDiv.setAttribute("id", "description");
   detailDiv.prepend(descriptionDiv);
 
-  let title = document.createElement("h1");
-  title.innerHTML = `${material}`;
+  let title = document.createElement("div");
+  title.innerHTML = `<h1>${material}</h1>`;
   title.setAttribute("id", "title");
   contentDiv.prepend(title);
 }
@@ -161,7 +161,7 @@ function drawChart(id, data) {
   var chartData = google.visualization.arrayToDataTable(data);
 
   var options = {
-    chartArea: { width: "70%", height: "80%" },
+    chartArea: { width: "65%", height: "70%" },
     title: id,
     titleTextStyle: { color: "white" },
     backgroundColor: "#1b1b1b",

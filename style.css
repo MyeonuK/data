@@ -100,7 +100,7 @@ header a {
   height: 100%;
 }
 
-.content_section .content h1 {
+.content div h1 {
   height: 50px;
   margin: var(--padding-medium) var(--padding-medium);
   padding: var(--padding-large) var(--padding-large);
@@ -152,7 +152,7 @@ header a {
 
 @media (max-width: 950px) {
   body {
-    width: 70%;
+    width: 90%;
     height: auto;
     margin: calc(var(--padding-large) / 2) auto;
     display: flex;
@@ -162,8 +162,13 @@ header a {
     border: var(--border-thickness) solid grey;
   }
 
+  header {
+    position: relative;
+  }
+
   .content_section {
     flex-direction: column;
+    overflow-y: scroll;
   }
 
   .content_section .material {
@@ -179,18 +184,30 @@ header a {
     width: 100%;
     height: auto;
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .content_section .content #title {
+    text-align: center;
+
+    position: sticky;
   }
 
   .content_section .content .detail {
     height: auto;
-    overflow-y: none;
+    overflow-y: unset;
   }
 
   .content .detail .charts {
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .content .charts .chart {
+    width: 100%;
+    height: 200px;
+    display: none;
   }
 }
