@@ -112,6 +112,7 @@ function changeDescription(material) {
 
   let title = document.createElement("div");
   title.innerHTML = `<h1>${material}</h1>`;
+  title.setAttribute("class", "title");
   title.setAttribute("id", "title");
   contentDiv.prepend(title);
 }
@@ -161,11 +162,15 @@ function drawChart(id, data) {
   var chartData = google.visualization.arrayToDataTable(data);
 
   var options = {
-    chartArea: { width: "65%", height: "70%" },
+    chartArea: { width: "80%", height: "70%" },
     title: id,
-    titleTextStyle: { color: "white" },
+    titleTextStyle: { color: "white", fontSize: 20 },
     backgroundColor: "#1b1b1b",
-    hAxis: { minValue: -0.1, maxValue: 2.65, textStyle: { color: "white" } },
+    hAxis: {
+      minValue: -0.1,
+      maxValue: 2.65,
+      textStyle: { color: "white" },
+    },
     vAxis: { textStyle: { color: "white" } },
     legend: { position: "bottom", textStyle: { color: "white" } },
     curveType: "function",
@@ -174,6 +179,16 @@ function drawChart(id, data) {
     },
     crosshair: { trigger: "both" },
   };
+
+  let needArr = [
+    "Frequency_Trace",
+    "Real_Conductivity",
+    "Imaginary_Conductivity",
+  ];
+
+  if (needArr.includes(id)) {
+    options.vAxis.format = "scientific";
+  }
 
   var myDocument = document.getElementById(id);
   myDocument.parentElement.style.display = "block";
